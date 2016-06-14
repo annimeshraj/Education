@@ -1,0 +1,167 @@
+
+<div class="about_banner">
+	<div class="container">
+		<h2>Question & Answer Forum</h2>
+		<span class="breadcrumbs"><a href="index.html"><i class="fa fa-home home_1"></i></a> / <span>Forum</span></span>
+	</div>
+</div>
+
+<div class="about_top">
+	<div class="container">
+		<div class="forum_left"  style="width:100% !important">
+			<% if session['user'] %>
+			<form class="form-horizontal register" role="form" style=" padding:0px;">
+				<div class="section search_question" style=" margin-bottom:10px !important;">
+					<label for="location" class="field prepend-icon">
+						<input type="text" name="searchque" id="searchque" placeholder="Search for questions, tips">
+						<label for="location" class="field-icon">
+							<i class="fa fa-search"></i>
+						</label>
+					</label>
+			   </div> 
+			   <div class="section search_question" style=" margin-bottom:10px !important;">
+				  <label for="quecat" class="field" style=" width:100%;">
+					 <select path="quecat" id="quecat" class="form-control input-sm" style="padding-left: 10px; height:42px;">
+						<option value="">Search questions by category</option>
+						
+					 </select>
+				  </label>
+			   </div>
+			   <div class="clearfix"></div>
+			</form>
+			
+				<a href="#" style=" margin-right:0.5%;" class="add_btn classi_btn ask_que" data-toggle="modal" data-target="#question_model">Ask a Question</a>
+				<a href="#" class="add_btn classi_btn ask_que" data-toggle="modal" data-target="#question_by_category_model">Ask a question by category</a>
+				<div class="clearfix"></div>
+			<% end %>
+			
+			<ul id="myTab">
+			  <li class="active" id="new"><a data-target="#New" data-toggle="tab">New</a></li>
+			  <li id="answered"><a data-target="#answered" data-toggle="tab">Answered</a></li>
+			  <li id="unanswered"><a data-target="#Unanswered" data-toggle="tab">Unanswered</a></li>
+			  <li id="top_rated"><a data-target="#TopRated" data-toggle="tab">Top Rated</a></li>
+			</ul>
+			<div class="tab-content">
+			
+			  	<div class="tab-pane active" id="New">
+			  		<% @questions.each do |ques| %>
+					<div class="row_1">             
+						<div class="col-lg-2 col-sm-2">                 
+							<div class="index-post-media">                     
+								<div class="media-materials clearfix">                        
+							  		<img alt="" class="img-responsive" src="/assets/c15.jpg"/>
+							  	</div>                 
+							</div>           
+						</div>       
+						<div class="col-lg-10 col-sm-10">           
+							<div class="blog-entry-title">                                           
+						   		<h3><a href="/forum/questions/<%= ques['question_id'] %>"><%=ques['title'] %></a></h3>          
+							  	<div class="post-element clearfix">                         
+									<div class="post__1" style="overflow: hidden;">
+								  		<span class="post__1-item post__1-date"><%= ques['updated_at'].to_datetime.strftime("%d.%m.%Y") %></span>    
+								   		<span class="post__1-item"><span class="link_2"><a href="#" title="Answer" class="like_button">
+									  		<i class="fa fa-eye"></i></a></span><span><%=(ques['likes']).length %></span>
+								  		</span>
+								 	</div>                     
+							 	</div>  
+							 	<p><%= (ques['description']).html_safe %></p>   
+							</div>   
+					 	</div>
+						<div class="clearfix"></div>
+					</div>
+				<% end %>
+				<%= will_paginate @questions %>
+			  	</div>
+			  	<div class="tab-pane" id="answered">
+			  		Answered
+			  	</div>
+			  	<div class="tab-pane" id="Unanswered">
+			  		Unanswered
+			  	</div>
+			  	<div class="tab-pane" id="TopRated">
+			  		Top Rated
+			  	</div>
+			
+			</div>     
+		</div>
+		
+		<div class="forum_right">
+			<h4>RELATED QUESTIONS</h4>
+			<ul class="relatedque">
+				<li><a href="que_detail.html">Lorem Ipsum Dollar Sit Amet</a></li>
+				<li><a href="que_detail.html">Curabitur quisque morbi aspernatu</a></li>
+				<li><a href="que_detail.html">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti</a></li>
+				<li><a href="que_detail.html">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</a></li>
+				<li><a href="que_detail.html">Lorem Ipsum Dollar Sit Amet</a></li>
+				<li><a href="que_detail.html">Curabitur quisque morbi aspernatu</a></li>
+				<li><a href="que_detail.html">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti</a></li>
+				<li><a href="que_detail.html">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</a></li>
+				<li><a href="que_detail.html">Lorem Ipsum Dollar Sit Amet</a></li>
+				<li><a href="que_detail.html">Curabitur quisque morbi aspernatu</a></li>
+				<li><a href="que_detail.html">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti</a></li>
+				<li><a href="que_detail.html">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</a></li>
+				<li><a href="que_detail.html">Lorem Ipsum Dollar Sit Amet</a></li>
+				<li><a href="que_detail.html">Curabitur quisque morbi aspernatu quisque morbi</a></li>
+				
+			</ul>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<%= javascript_include_tag Ckeditor.cdn_url %>
+<%= stylesheet_link_tag "select2.css" %>
+<%= stylesheet_link_tag "select2-bootstrap.css" %>
+<%=javascript_include_tag "select2.min.js"%>
+
+<script type="text/javascript">
+// $('#myTab li').click(function(e){ 
+// 	alert($(this).attr('id'));
+// });
+$(".forum_right").hide();
+$(document).ready(function() { 
+	
+	$("#category").select2({
+    	placeholder: "Categories",
+    	tags: true,
+    	minimumInputLength: 1,
+    	tokenSeparators: [',', ' ', '\t'],
+    	multiple: true,
+    	separator: ',',
+	    initSelection : function (element, callback) {
+	      var data = [];
+	      $(element.val().split(',')).each(function(i) {
+	          var item = this.split(':');
+	          data.push({
+	              id: item[0],
+	              label: item[1]
+	          });
+	      });
+	      callback(data);
+	    },
+	    ajax: {
+	            url: "/tags",
+	            method: "GET",  
+	            data: function (term, page) {  
+	                return {  
+	                    keyword: term// search term  
+	                };  
+	            },  
+	            results: function (data2, page) { // parse the results into the format 
+	                return { results: data2 };  
+	            }  
+	    },
+	    dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
+	    escapeMarkup: function (m) { return m; } ,// we do not want to escape markup since we are displaying html in results
+  	});
+	
+	
+});
+</script>
+<style type="text/css">
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+</style>
+<%= render "forums/ask_question" %>
+<%= render "forums/ask_question_by_category" %>

@@ -1,0 +1,126 @@
+<div class="about_banner">
+	<div class="container">
+		<h2>Question Details</h2>
+		<span class="breadcrumbs"><a href="index.html"><i class="fa fa-home home_1"></i></a> / <a href="forum.html" class="home_desc">Forum</a> / <span>Question Details</span></span>
+	</div>
+</div>
+<div class="about_top">
+ <div class="container">
+	
+	<div class="forum_left" style="width:100% !important">
+	    <h3><%= @question['title']%></h3>
+	     <div class="post-element clearfix">                         
+			<div class="post__1" style="overflow: hidden;">
+			  <span class="post__1-date"><%=@question['author']['first_name']+" "+@question['author']['last_name'] %><br><%= @question['created_at'].to_datetime.strftime("%d.%m.%Y") %></span>
+			  
+			   <span class="post__1-item"><span class="link_2">
+				  Rate this : <a href="#" title="Answer" class="like_button"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></a></span>
+			  </span>
+			 </div>                     
+		 </div>
+         <div class="comments-post">
+	        <div class="title_1 clearfix">
+				<h4 class="comments"><%=@question['answers'].size%> Answers</h4>
+				<% if session['user']['role'] == "TEACHER" %>
+				<div class="leave-reply-link"><a href="#" data-toggle="modal" data-target="#answer_model">Add Answer</a></div>
+				<% end %>
+		    </div>
+				 <!-- Modal -->
+			<ul class="comment-list clearfix">
+				<%@question['answers'].each do |answer| %>
+			  <li>
+                  <div class="col-lg-2 col-sm-2 col-xs-2"> </div>
+                  <div class="col-lg-10 col-sm-10 col-xs-10 comment-content clearfix">
+                     <div class="author author-title">
+                        <h5><%=answer['answer'].html_safe %></h5>
+                        <div class="post-element clearfix">
+
+                            <p title="<%=answer['created_at'].to_datetime.strftime("%d.%m.%Y") %>" href="#" class="date"><%=answer['author']['first_name']+" "+answer['author']['last_name'] %><br><%=answer['created_at'].to_datetime.strftime("%d.%m.%Y") %></p>
+                        </div>
+                     </div>
+                     <% if session['user']['role'] == "TEACHER" %>
+                     <div class="comment-tools pull-right">
+                        <a href="#" data-toggle="modal" data-id="<%= answer['answer_id']%>" class="open-AddDialog" data-target="#reply_model">Reply</a>  
+                     </div>
+                     <% end %>
+                     <div class="clearfix"> </div>
+                     <% answer['replied'].each do |reply| %>
+                     	<div class="reply">
+                     		<%= reply['answer'].html_safe%>
+                     	</div>
+                     	<div class="post-element clearfix">
+                            <p title="<%=reply['created_at'].to_datetime.strftime("%d.%m.%Y") %>" href="#" class="date"><%=answer['created_at'].to_datetime.strftime("%d.%m.%Y") %></p>
+                        </div>
+                     <%end %>
+                 </div>
+                 <div class="clearfix"> </div>
+             </li>
+             	<%end %>
+           </ul>
+           <!-- requried-jsfiles-for owl -->
+		<% if !logged_in? %>
+           	<div class="comment_box">
+		    	<p>Your email address will not be published</p>
+			  	<div class="form-group">
+		            <label class="field-label" for="comment">Your Answer:</label>
+		            <textarea rows="8" id="comment" class="form-control form_control_2" name="comment" aria-required="true"></textarea>
+	           	</div>
+	           	<div class="form-group">
+	            	<label class="field-label">Name:</label>
+	            	<input type="text" name="author" class="form-control form_control_2" id="author" value="" aria-required="true">
+	            </div>
+	            <div class="form-group">
+	            	<label class="field-label">Email:</label>
+	            	<input id="email" name="email" class="form-control form_control_2" type="text" value="" aria-required="true">
+	            </div>
+	            <div class="form-group">
+	                <label class="field-label">Website:</label>
+	                <input id="url" name="url" class="form-control form_control_2" type="text" value="">
+	            </div>
+	            <div class="submit-wrap submit-wrap_1">
+	          	   <input type="submit" value="Submit Answer">
+	            </div>
+	      	</div>
+	    <%end %>
+         </div>		
+        <div class="clearfix"> </div>
+      </div>
+      
+	  	<div class="forum_right">
+			<h4>RELATED QUESTIONS</h4>
+			<ul class="relatedque">
+				<li><a href="que_detail.html">Lorem Ipsum Dollar Sit Amet</a></li>
+				<li><a href="que_detail.html">Curabitur quisque morbi aspernatu</a></li>
+				<li><a href="que_detail.html">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti</a></li>
+				<li><a href="que_detail.html">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</a></li>
+				<li><a href="que_detail.html">Lorem Ipsum Dollar Sit Amet</a></li>
+				<li><a href="que_detail.html">Curabitur quisque morbi aspernatu</a></li>
+				<li><a href="que_detail.html">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti</a></li>
+				<li><a href="que_detail.html">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</a></li>
+				<li><a href="que_detail.html">Lorem Ipsum Dollar Sit Amet</a></li>
+				<li><a href="que_detail.html">Curabitur quisque morbi aspernatu</a></li>
+				<li><a href="que_detail.html">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti</a></li>
+				<li><a href="que_detail.html">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</a></li>
+			</ul>
+		</div>
+      	<div class="clearfix"> </div>
+      
+   </div>
+</div>
+<%= render "add_answers" %>
+<%= render "reply_answer" %>
+<script type="text/javascript">
+$(".forum_right").hide();
+$(document).on("click", ".open-AddDialog", function () {
+   var e = $(this).attr("data-id");
+   var url = "/forum/questions/<%=@question['question_id'] %>/answers/"+e+"/reply";
+   var element = document.getElementById('answer_reply');
+   element.setAttribute("action",url)
+});
+</script>
+<style type="text/css">
+.reply{
+	color: #999;
+    font-size: 16px;
+}
+</style>

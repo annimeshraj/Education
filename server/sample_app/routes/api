@@ -1,0 +1,49 @@
+// # API routes
+var express     = require('express'),
+    api         = require('../controllers'),   
+    api_routes;
+
+api_routes = function(router) {   
+	router = express.Router();
+    // alias delete with del
+    router.del = router.delete;
+
+// ## ContactUs
+	router.post('/contact_us', api.http(api.contact_us.create));
+
+// ## User
+	router.post('/register', api.http(api.users.sign_up));
+	router.post('/login', api.http(api.users.sign_in));
+
+// ## Subscription
+    router.post('/subscriptions', api.http(api.subscriptions.create));
+
+
+// ##School
+    router.post('/school', api.http(api.schools.create));
+    router.put('/schools', api.http(api.schools.update));
+    router.get('/school/:id', api.http(api.schools.show));
+    router.get('/schools', api.http(api.schools.index));
+    router.delete('/school/:id', api.http(api.schools.destroy));
+
+
+// ##Subject
+    router.post('/subjects', api.http(api.subjects.create));
+    router.put('/subjects', api.http(api.subjects.update));
+    router.get('/subjects/:id', api.http(api.subjects.show));
+    router.get('/subjects', api.http(api.subjects.index));
+    router.delete('/subjects/:id', api.http(api.subjects.destroy));
+
+// ##Question
+    router.post('/questions', api.http(api.questions.create));
+    router.get('/questions', api.http(api.questions.index));
+	router.get('/questions/:id', api.http(api.questions.show));
+
+// ##Answer
+    router.post('/answers', api.http(api.answers.create));
+	router.post('/answers/reply', api.http(api.answers.reply));
+
+    return router;
+};
+
+module.exports = api_routes;

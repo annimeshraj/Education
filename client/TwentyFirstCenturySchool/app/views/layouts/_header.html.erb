@@ -1,0 +1,623 @@
+<div class="header">
+		<div class="container">
+			<div class="logo">
+			  <a href="index.html"><img src="/assets/logo.jpg" alt="21 Century School" /></a>
+			</div>
+		    <div class="logo_right">
+			    <div class="profile">
+			    	<% if logged_in? %>
+					    <label for="notification" class="pro_notif_icon">
+							<i class="fa fa-bell"></i>
+							<ul class="hover_sec">
+								<li><a href="#">Lorem</a></li>
+								<li><a href="#">Ipsum</a></li>
+							</ul>
+						</label>
+					
+					    <label for="profile" class="pro_notif_icon">
+							<i class="fa fa-user"></i>
+							<ul class="hover_sec">
+								<li><a href="#"><%= current_user['email_id'] %></a></li>
+								<li><a href="#">Settings</a></li>
+								<li><a href="#">Help</a></li>
+								<li><a href="/signout" data-method="delete">Logout</a></li>
+							</ul>
+						</label>
+					<%end %>
+                </div>
+			   <div class="social">
+				  <a href="" class="link facebook" target="_parent"><span class="fa fa-facebook"></span></a>
+				  <a href="" class="link google" target="_parent"><span class="fa fa-google-plus"></span></a>
+				  <a href="" class="link google" target="_parent"><span class="fa fa-linkedin"></span></a>
+               </div>
+				<!-- script for menu -->
+				<span class="menu"></span>
+				<div class="top-menu">
+					<ul>
+						<%! unless logged_in? %>
+							<li><a href="#" class="btn btn-default btn-default_2 pull-left" data-toggle="modal" data-target="#applyModal">Login</a></li>
+						<% end %>	
+						<li><a href="#" class="btn btn-default btn-default_2 pull-left " data-toggle="modal" data-target="#applyModal_2">Search</a></li>
+						
+					</ul>
+				</div>
+				
+				<div class="clearfix"> </div>
+			<!-- Modal -->
+				<div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel" aria-hidden="true">
+				  	<div class="modal-dialog modal-dialog_2">
+				    	<div class="modal-content">
+					      	<div class="modal-header">
+					        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					        	<h4 class="modal-title" id="myModalLabel">
+					        		<div class="head_4">
+			                          <p>Login</p>
+			                        </div>
+			                    </h4>
+					      	</div>
+	                        <div class="modal-body">
+	                        	<%= form_tag("/login", :method => "post", :class=> "register") do %>
+	                               	<div class="section">
+		                                <label for="email_id" class="field prepend-icon">
+		                                	<%= text_field_tag :email_id, "", class: 'form-control',placeholder: "Email Address" %>
+		                                    <label for="username" class="field-icon">
+		                                        <i class="fa fa-user"></i>
+		                                    </label>
+		                                </label>
+	                               	</div>
+	                               	<div class="section">
+		                                <label for="password" class="field prepend-icon">
+		                                	<%= password_field_tag :password, "", class: 'form-control',placeholder: "Password" %>
+		                                    <label for="password" class="field-icon">
+		                                        <i class="fa fa-lock"></i>
+		                                    </label>
+		                                </label>
+	                             	</div>
+	                             	<div class="section">
+	                             	 	<%= submit_tag("Login") %>
+	                             	</div>
+                             		<ul class="new">
+										<li class="new_left"><p><a href="#">Forgot Password ?</a></p></li>
+										<li class="new_right"><p class="sign">New here ?&nbsp;&nbsp;<a href="#" data-toggle="modal" data-target="#applyModal_1">Sign Up</a></p></li>
+										<div class="clearfix"></div>
+						     		</ul>
+                           		<% end %>
+						   <div class="alternatelogin">
+								<h3>Or you can</h3>
+								<a href="#"><img src="assets/facebook_login.png" alt="Login with Facebook" /></a>
+								<a href="#"><img src="assets/linkedin_login.png" alt="Login with Linkedin" /></a>
+						   </div>
+                        </div>
+				    </div>
+				 </div>
+				</div>
+				 <!-- Modal -->
+				<div class="modal fade" id="applyModal_1" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel" aria-hidden="true">
+				  	<div class="modal-dialog dialog_3">
+				    	<div class="modal-content">
+					      	<div class="modal-header">
+					        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					        	<h4 class="modal-title" id="myModalLabel"><div class="head_4">
+			                         <p>Register</p>
+			                        </div></h4>
+					      	</div>
+					      	<%#= form_tag "#",:name => "row", :method => "post", :class=> "register" do %>
+					      	<form name="row" method="post" class="register">
+					      		<div class="radio radio_1">
+									<input id="student" type="radio" value="student" name="profile">
+									<label for="student">Student</label>
+									<input id="teacher" type="radio" value="teacher" name="profile">
+									<label for="teacher">Teacher</label>
+									<input id="school" type="radio" value="school" name="profile">
+									<label for="school">School</label>
+	                            </div>        
+						    </form>
+						  
+						  <!-- multistep form -->
+						  <%#= form_tag "#",:method => "post", :class=> "msform stu_reg" do %>
+							<form class="msform stu_reg">
+							  <!-- progressbar -->
+							  <ul id="progressbar">
+								<li class="active">Account Setup</li>
+								<li>Personal Details</li>
+								<li>Further Info</li>
+							  </ul>
+							  <!-- fieldsets -->
+							  <fieldset>
+								<h2 class="fs-title">Create your account</h2>
+								<div class="section">
+                                  <label for="email id" class="field prepend-icon">
+                                    <input type="text" name="email id" id="Email id" placeholder="Email id">
+                                    <label for="email id" class="field-icon">
+                                        <i class="fa fa-user"></i>
+                                    </label>
+                                  </label>
+                               </div>
+                               <div class="section">
+                                 <label for="password" class="field prepend-icon">
+                                    <input type="password" name="password" id="password" placeholder="Password">
+                                    <label for="password" class="field-icon">
+                                        <i class="fa fa-lock"></i>
+                                    </label>
+                                 </label>
+                               </div>
+							   <div class="section">
+                                 <label for="cpassword" class="field prepend-icon">
+                                    <input type="password" name="cpassword" id="cpassword" placeholder="Confirm Password">
+                                    <label for="cpassword" class="field-icon">
+                                        <i class="fa fa-lock"></i>
+                                    </label>
+                                 </label>
+                               </div>
+								
+							   <input type="button" name="next" class="next action-button" value="Next" />
+							  </fieldset>
+							  <fieldset>
+								<h2 class="fs-title">Personal Details</h2>
+								<div class="section">
+                                  <label for="username" class="field prepend-icon">
+                                    <input type="text" name="fname" id="fname" placeholder="First Name">
+                                    <label for="fname" class="field-icon">
+                                        <i class="fa fa-user"></i>
+                                    </label>
+                                  </label>
+                               </div>
+							   <div class="section">
+                                  <label for="username" class="field prepend-icon">
+                                    <input type="text" name="lname" id="lname" placeholder="Last Name">
+                                    <label for="lname" class="field-icon">
+                                        <i class="fa fa-user"></i>
+                                    </label>
+                                  </label>
+                               </div>
+								<div class="section">
+                                  <label for="mobile number" class="field prepend-icon">
+                                    <input type="text" name="mobile number" id="Mobile Number" placeholder="Mobile Number">
+                                    <label for="mobile number" class="field-icon">
+                                        <i class="fa fa-phone"></i>
+                                    </label>
+                                  </label>
+                               </div>
+								<div class="section" style=" margin-bottom:10px !important;">
+                                  <label for="State" class="field prepend-icon">
+                                     <select path="State" id="State" class="form-control input-sm" style="padding-left: 36px; height:42px;">
+                                        <option value="">Select State</option>
+										
+                                     </select>
+                                     <label for="State" class="field-icon">
+                                        <i class="fa fa-globe"></i>
+                                     </label>
+                                  </label>
+                               </div>
+                               <div class="section" style=" margin-bottom:10px !important;">
+                                  <label for="city" class="field prepend-icon">
+                                      <select path="city" id="city" class="form-control input-sm" style="padding-left: 36px; height:42px;">
+                                         <option value="">Select City</option>
+                                      </select>
+                                      <label for="city" class="field-icon">
+                                        <i class="fa fa-globe"></i>
+                                      </label>
+                                  </label>
+                               </div>
+								<input type="button" name="previous" class="previous action-button" value="Previous" />
+								<input type="button" name="next" class="next action-button" value="Next" />
+								
+							  </fieldset>
+							  <fieldset>
+								<h2 class="fs-title">Further Information</h2>
+								<div class="radio radio_1" style=" margin-bottom:0px !important;">
+									<h4>Gender</h4>
+									<div style="float:left; margin-right:5px;">
+										<input id="male" type="radio" value="male" name="gender">
+										<label for="male">Male</label>
+									</div>
+									<div style="float:left;">
+										<input id="female" type="radio" value="female" name="gender">
+										<label for="female">Female</label>
+									</div>
+									<div class="clearfix"></div>
+	                            </div>
+								<div style=" margin-bottom:0px !important;">
+									<h4>Birth Date</h4>
+									<div class="section" style="width:25%; float:left; margin-bottom:10px !important;">
+									  <label for="date" class="field prepend-icon">
+										 <select path="date" id="date" class="form-control input-sm" style=" height:42px; padding:5px 1% !important;">
+											<option value="">Date</option>
+											
+										 </select>	
+									  </label>
+								   </div>
+								   <div class="section" style="width:48%; margin:0 1% 10px 1%; float:left;">
+									  <label for="month" class="field prepend-icon">
+										 <select path="month" id="month" class="form-control input-sm" style=" height:42px; padding:5px 1% !important;">
+											<option value="">Month</option>
+											
+										 </select> 
+									  </label>
+								   </div>
+								   <div class="section" style="width:25%; margin-bottom:10px !important; float:left;">
+									  <label for="year" class="field prepend-icon">
+										 <select path="year" id="year" class="form-control input-sm" style=" height:42px; padding:5px 1% !important;">
+											<option value="">Year</option>
+											
+										 </select>	 
+									  </label>
+								   </div>
+									<div class="clearfix"></div>
+	                            </div>
+								<div class="section">
+                                  <label for="school" class="field prepend-icon">
+                                    <input type="text" name="school" id="school" placeholder="School Name">
+                                    <label for="school" class="field-icon">
+                                        <i class="fa fa-building-o"></i>
+                                    </label>
+                                  </label>
+                               </div>
+							   <div class="section" style=" margin-bottom:10px !important;">
+                                  <label for="class" class="field prepend-icon">
+                                      <select path="class" id="class" class="form-control input-sm" style="padding-left: 36px; height:42px;">
+                                         <option value="">Class</option>
+                                      </select>
+                                      <label for="class" class="field-icon">
+                                        <i class="fa fa-briefcase"></i>
+                                      </label>
+                                  </label>
+                               </div>
+							   <div class="checkbox check_1">
+									<input id="check1" type="checkbox" name="check" value="check1">
+									<label for="check1">I agree to the Terms of Service and Privacy Policy</label>
+							   </div>
+								<input type="button" name="previous" class="previous action-button" value="Previous" />
+								<input type="submit" name="register" class="submit action-button" value="Register" />
+							  </fieldset>
+							  <%#end %>  
+							</form>
+						  
+						  <!-- multistep form -->
+							<form class="msform tea_reg">
+							  <!-- progressbar -->
+							  <ul id="progressbar">
+								<li class="active">Account Setup</li>
+								<li>Personal Details</li>
+								<li>Further Info</li>
+							  </ul>
+							  <!-- fieldsets -->
+							  <fieldset>
+								<h2 class="fs-title">Create your account</h2>
+								<div class="section">
+                                  <label for="email id" class="field prepend-icon">
+                                    <input type="text" name="email id" id="Email id" placeholder="Email id">
+                                    <label for="email id" class="field-icon">
+                                        <i class="fa fa-user"></i>
+                                    </label>
+                                  </label>
+                               </div>
+                               <div class="section">
+                                 <label for="password" class="field prepend-icon">
+                                    <input type="password" name="password" id="password" placeholder="Password">
+                                    <label for="password" class="field-icon">
+                                        <i class="fa fa-lock"></i>
+                                    </label>
+                                 </label>
+                               </div>
+							   <div class="section">
+                                 <label for="cpassword" class="field prepend-icon">
+                                    <input type="password" name="cpassword" id="cpassword" placeholder="Confirm Password">
+                                    <label for="cpassword" class="field-icon">
+                                        <i class="fa fa-lock"></i>
+                                    </label>
+                                 </label>
+                               </div>
+								
+							   <input type="button" name="next" class="next action-button" value="Next" />
+							  </fieldset>
+							  <fieldset>
+								<h2 class="fs-title">Personal Details</h2>
+								<div class="section">
+                                  <label for="username" class="field prepend-icon">
+                                    <input type="text" name="fname" id="fname" placeholder="First Name">
+                                    <label for="fname" class="field-icon">
+                                        <i class="fa fa-user"></i>
+                                    </label>
+                                  </label>
+                               </div>
+							   <div class="section">
+                                  <label for="username" class="field prepend-icon">
+                                    <input type="text" name="lname" id="lname" placeholder="Last Name">
+                                    <label for="lname" class="field-icon">
+                                        <i class="fa fa-user"></i>
+                                    </label>
+                                  </label>
+                               </div>
+								<div class="section">
+                                  <label for="mobile number" class="field prepend-icon">
+                                    <input type="text" name="mobile number" id="Mobile Number" placeholder="Mobile Number">
+                                    <label for="mobile number" class="field-icon">
+                                        <i class="fa fa-phone"></i>
+                                    </label>
+                                  </label>
+                               </div>
+								<div class="section" style=" margin-bottom:10px !important;">
+                                  <label for="State" class="field prepend-icon">
+                                     <select path="State" id="State" class="form-control input-sm" style="padding-left: 36px; height:42px;">
+                                        <option value="">Select State</option>
+										
+                                     </select>
+                                     <label for="State" class="field-icon">
+                                        <i class="fa fa-globe"></i>
+                                     </label>
+                                  </label>
+                               </div>
+                               <div class="section" style=" margin-bottom:10px !important;">
+                                  <label for="city" class="field prepend-icon">
+                                      <select path="city" id="city" class="form-control input-sm" style="padding-left: 36px; height:42px;">
+                                         <option value="">Select City</option>
+                                      </select>
+                                      <label for="city" class="field-icon">
+                                        <i class="fa fa-globe"></i>
+                                      </label>
+                                  </label>
+                               </div>
+								<input type="button" name="previous" class="previous action-button" value="Previous" />
+								<input type="button" name="next" class="next action-button" value="Next" />
+								
+							  </fieldset>
+							  <fieldset>
+								<h2 class="fs-title">Further Information</h2>
+								<div class="radio radio_1" style=" margin-bottom:0px !important;">
+									<h4>Gender</h4>
+									<div style="float:left; margin-right:5px;">
+										<input id="male" type="radio" value="male" name="gender">
+										<label for="male">Male</label>
+									</div>
+									<div style="float:left;">
+										<input id="female" type="radio" value="female" name="gender">
+										<label for="female">Female</label>
+									</div>
+									<div class="clearfix"></div>
+	                            </div>
+								<div style="margin-bottom:0px !important;">
+									<h4>Birth Date</h4>
+									<div class="section" style="width:25%; float:left; margin-bottom:10px !important;">
+									  <label for="date" class="field prepend-icon">
+										 <select path="date" id="date" class="form-control input-sm" style=" height:42px; padding:5px 1% !important;">
+											<option value="">Date</option>
+											
+										 </select>	
+									  </label>
+								   </div>
+								   <div class="section" style="width:48%; margin:0 1% 10px 1%; float:left;">
+									  <label for="month" class="field prepend-icon">
+										 <select path="month" id="month" class="form-control input-sm" style=" height:42px; padding:5px 1% !important;">
+											<option value="">Month</option>
+											
+										 </select> 
+									  </label>
+								   </div>
+								   <div class="section" style="width:25%; margin-bottom:10px !important; float:left;">
+									  <label for="year" class="field prepend-icon">
+										 <select path="year" id="year" class="form-control input-sm" style=" height:42px; padding:5px 1% !important;">
+											<option value="">Year</option>
+											
+										 </select>	 
+									  </label>
+								   </div>
+									<div class="clearfix"></div>
+	                            </div>
+								<div class="section">
+                                  <label for="school" class="field prepend-icon">
+                                    <input type="text" name="school" id="school" placeholder="School Name">
+                                    <label for="school" class="field-icon">
+                                        <i class="fa fa-building-o"></i>
+                                    </label>
+                                  </label>
+                               </div>
+							   <div class="section">
+                                  <label for="subject" class="field prepend-icon">
+                                    <input type="text" name="subject" id="subject" placeholder="Subject Name">
+                                    <label for="subject" class="field-icon">
+                                        <i class="fa fa-book"></i>
+                                    </label>
+                                  </label>
+                               </div>
+							   <div class="checkbox check_1">
+									<input id="check1" type="checkbox" name="check" value="check1">
+									<label for="check1">I agree to the Terms of Service and Privacy Policy</label>
+							   </div>
+								<input type="button" name="previous" class="previous action-button" value="Previous" />
+								<input type="submit" name="register" class="submit action-button" value="Register" />
+							  </fieldset>
+							</form>
+
+							<!-- multistep form -->
+							<form class="msform sch_reg">
+							  <!-- progressbar -->
+							  <ul id="progressbar">
+								<li class="active">Account Setup</li>
+								<li>Personal Details</li>
+								<li>Further Info</li>
+							  </ul>
+							  <!-- fieldsets -->
+							  <fieldset>
+								<h2 class="fs-title">Create your account</h2>
+								<div class="section">
+                                  <label for="email id" class="field prepend-icon">
+                                    <input type="text" name="email id" id="Email id" placeholder="Email id">
+                                    <label for="email id" class="field-icon">
+                                        <i class="fa fa-user"></i>
+                                    </label>
+                                  </label>
+                               </div>
+                               <div class="section">
+                                 <label for="password" class="field prepend-icon">
+                                    <input type="password" name="password" id="password" placeholder="Password">
+                                    <label for="password" class="field-icon">
+                                        <i class="fa fa-lock"></i>
+                                    </label>
+                                 </label>
+                               </div>
+							   <div class="section">
+                                 <label for="cpassword" class="field prepend-icon">
+                                    <input type="password" name="cpassword" id="cpassword" placeholder="Confirm Password">
+                                    <label for="cpassword" class="field-icon">
+                                        <i class="fa fa-lock"></i>
+                                    </label>
+                                 </label>
+                               </div>
+								
+							   <input type="button" name="next" class="next action-button" value="Next" />
+							  </fieldset>
+							  <fieldset>
+								<h2 class="fs-title">Personal Details</h2>
+								<div class="section">
+                                  <label for="school" class="field prepend-icon">
+                                    <input type="text" name="school" id="school" placeholder="School Name">
+                                    <label for="school" class="field-icon">
+                                        <i class="fa fa-building-o"></i>
+                                    </label>
+                                  </label>
+                               </div>
+							   <div class="section">
+                                  <label for="board" class="field prepend-icon">
+                                    <input type="text" name="board" id="board" placeholder="Board">
+                                    <label for="board" class="field-icon">
+                                        <i class="fa fa-check-square-o"></i>
+                                    </label>
+                                  </label>
+                               </div>
+								<div class="section">
+                                  <label for="username" class="field prepend-icon">
+                                    <input type="text" name="mobile number" id="Mobile Number" placeholder="Contact Number">
+                                    <label for="mobile number" class="field-icon">
+                                        <i class="fa fa-phone"></i>
+                                    </label>
+                                  </label>
+                               </div>
+								<div class="section" style=" margin-bottom:10px !important;">
+                                  <label for="State" class="field prepend-icon">
+                                     <select path="State" id="State" class="form-control input-sm" style="padding-left: 36px; height:42px;">
+                                        <option value="">Select State</option>
+										
+                                     </select>
+                                     <label for="State" class="field-icon">
+                                        <i class="fa fa-globe"></i>
+                                     </label>
+                                  </label>
+                               </div>
+                               <div class="section" style=" margin-bottom:10px !important;">
+                                  <label for="city" class="field prepend-icon">
+                                      <select path="city" id="city" class="form-control input-sm" style="padding-left: 36px; height:42px;">
+                                         <option value="">Select City</option>
+                                      </select>
+                                      <label for="city" class="field-icon">
+                                        <i class="fa fa-globe"></i>
+                                      </label>
+                                  </label>
+                               </div>
+								<input type="button" name="previous" class="previous action-button" value="Previous" />
+								<input type="button" name="next" class="next action-button" value="Next" />
+								
+							  </fieldset>
+							  <fieldset>
+								<h2 class="fs-title">Further Information</h2>
+								<div class="radio radio_1" style=" margin-bottom:0px !important;">
+									<h4>Sector</h4>
+									<div style="float:left; margin-right:5px;">
+										<input id="Private" type="radio" value="Private" name="sector">
+										<label for="Private">Private</label>
+									</div>
+									<div style="float:left;">
+										<input id="Government" type="radio" value="Government" name="sector">
+										<label for="Government">Government</label>
+									</div>
+									<div class="clearfix"></div>
+	                            </div>
+								<div style=" margin-bottom:0px !important;">
+									<h4>Since</h4>	
+								   <div class="section" style="margin-bottom:10px !important;">
+									  <label for="year" class="field prepend-icon">
+										 <select path="year" id="year" class="form-control input-sm" style="padding-left: 36px; height:42px;">
+											<option value="">Year</option>	
+										 </select>
+										 <label for="class" class="field-icon">
+											<i class="fa fa-calendar"></i>
+										 </label>										 
+									  </label>
+								   </div>
+									
+	                            </div>	
+							
+							   <div class="checkbox check_1">
+									<input id="check1" type="checkbox" name="check" value="check1">
+									<label for="check1">I agree to the Terms of Service and Privacy Policy</label>
+							   </div>
+								<input type="button" name="previous" class="previous action-button" value="Previous" />
+								<input type="submit" name="register" class="submit action-button" value="Register" />
+							  </fieldset>
+							</form>		
+						  
+                     </div>
+		         </div>
+		     </div>
+			 <div class="modal fade" id="applyModal_2" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								&times;</button>
+							<h4 class="modal-title" id="myModalLabel">
+								Select a Region</h4>
+						</div>
+						<div class="modal-body">
+							 <form class="form-horizontal register" role="form" style=" padding:0px;">
+								<div class="section">
+									<label for="location" class="field prepend-icon">
+										<input type="text" name="location" id="location" placeholder="ENTER YOUR CITY">
+										<label for="location" class="field-icon">
+											<i class="fa fa-search"></i>
+										</label>
+									</label>
+                               </div>
+									<div class="SearchCriteria">
+                      					<h4>TOP SEARCHED</h4>
+                    					<div class="__top-cities">
+                      						<a href="">National Capital Region (NCR),</a> <a href="">Mumbai,</a> <a href="">Pune,</a> <a href="">Bengaluru,</a> <a href="">Chennai,</a>  <a href="">Hyderabad,</a> <a href="">Kolkata</a>
+                  						</div>
+                  						<a class="view-all-cities" href="">All Cities</a>
+                					</div>
+							  </form>  		
+						</div>
+					</div>
+				  </div>
+				</div>
+			  <div class="clearfix"></div>
+		 </div>
+		 
+		 <nav class="navbar nav_bottom col-sm-9 logo_right" role="navigation">
+			
+			 <!-- Brand and toggle get grouped for better mobile display -->
+			   <div class="navbar-header nav_2">
+				  <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+				  <a class="navbar-brand" href="#"></a>
+			   </div> 
+			   <!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+					<ul class="nav navbar-nav nav_1">
+						<li class="current_page"><a href="/">Home</a></li>
+						<li><a href="/about_us">About</a></li>
+						<li><a href="/portal">Portal</a></li>
+						<li><a href="/articles">Articles</a></li>
+						<li><a href="/forums">Forum</a></li>
+						<li><a href="/schools">School</a></li>
+						<li><a href="/contact">Contact</a></li>
+					</ul>
+				 </div><!-- /.navbar-collapse -->
+			   
+			</nav>
+		 
+	   </div>
+</div>

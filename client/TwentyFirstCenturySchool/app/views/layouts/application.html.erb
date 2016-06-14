@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>21st Century School</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <title>21st Century School</title>
+
+<link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="21st Century School" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href="/assets/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css' />
+<!-- <script type="text/javascript" src="/assets/lib.js"></script> -->
+ <script src="/assets/analytic.js"></script>
+<!-- <script src="/assets/bootstrap.min.js"></script> -->
+<script src="/assets/isotope.min.js"></script>
+<script src="/assets/jquery.adipoli.min.js"></script>
+<script src="/assets/jquery.prettyPhoto.js"></script>
+<script src="/assets/custom.js"></script>
+
+<!-- Custom Theme files -->
+<link href="/assets/style.css" rel='stylesheet' type='text/css' />
+<script type="text/javascript" src="/assets/move-top.js"></script>
+<script type="text/javascript" src="/assets/easing.js"></script>
+
+
+<script src="/assets/jquery.chocolat.js"></script>
+<link rel="stylesheet" href="/assets/chocolat.css" type="text/css" media="screen" charset="utf-8" />
+<!--light-box-files -->
+<script type="text/javascript" charset="utf-8">
+$(function() {
+	$('.gallery a').Chocolat();
+});
+</script>
+
+<!-- <link href="/assets/zozo.css" rel="stylesheet" type="text/css" />  
+
+ -->
+
+</head>
+<body>
+<%= render "layouts/header" %>
+<%= yield %>
+<%= render "layouts/footer" %>
+
+<script src="/assets/jquery.carouFredSel.js"></script> 
+<script src="/assets/jquery.easytabs.min.js"></script> 
+<script src="/assets/jquery.countdown.js"></script> 
+<script type="text/javascript" src="/assets/jquery.flexisel.js"></script>
+<script src="/assets/clndr.js"></script> 
+<!-- 
+<script src="/assets/jquery.min.js"></script> 
+
+
+<script src="/assets/jquery.flexslider.js"></script> 
+<script src="/assets/jquery.leanModal.min.js"></script> 
+
+
+
+<script src="/assets/classie.js"></script> 
+<script src="/assets/script.js"></script> 
+
+
+
+
+<script type="text/javascript" src="/assets/custom.js"></script> -->
+
+
+
+
+<script>
+    function init() {
+        window.addEventListener('scroll', function (e) {
+            var distanceY = window.pageYOffset || document.documentElement.scrollTop,
+                shrinkOn = 50,
+                header = document.querySelector(".header");
+            if (distanceY > shrinkOn) {
+                classie.add(header, "smaller");
+            } else {
+                if (classie.has(header, "smaller")) {
+                    classie.remove(header, "smaller");
+                }
+            }
+        });
+    }
+    window.onload = init();
+</script>
+
+<script type="text/javascript">
+
+$(window).load(function() {
+	 $("#flexiselDemo1").flexisel({
+        visibleItems: 4,
+        animationSpeed: 500,
+        autoPlay: true,
+        autoPlaySpeed: 3000,            
+        pauseOnHover: true,
+        enableResponsiveBreakpoints: true,
+        responsiveBreakpoints: { 
+            portrait: { 
+                changePoint:480,
+                visibleItems: 1
+            }, 
+            landscape: { 
+                changePoint:640,
+                visibleItems: 2
+            },
+            tablet: { 
+                changePoint:768,
+                visibleItems: 3
+            }
+        }
+    });
+	$("#flexiselDemo2").flexisel({
+        visibleItems: 4,
+        animationSpeed: 500,
+        autoPlay: true,
+        autoPlaySpeed: 3000,            
+        pauseOnHover: true,
+        enableResponsiveBreakpoints: true,
+        responsiveBreakpoints: { 
+            portrait: { 
+                changePoint:480,
+                visibleItems: 1
+            }, 
+            landscape: { 
+                changePoint:640,
+                visibleItems: 2
+            },
+            tablet: { 
+                changePoint:768,
+                visibleItems: 3
+            }
+        }
+    });
+	$("#flexiselDemo3").flexisel({
+        visibleItems: 4,
+        animationSpeed: 500,
+        autoPlay: true,
+        autoPlaySpeed: 3000,            
+        pauseOnHover: true,
+        enableResponsiveBreakpoints: true,
+        responsiveBreakpoints: { 
+            portrait: { 
+                changePoint:480,
+                visibleItems: 1
+            }, 
+            landscape: { 
+                changePoint:640,
+                visibleItems: 2
+            },
+            tablet: { 
+                changePoint:768,
+                visibleItems: 3
+            }
+        }
+    });
+	$("#flexiselDemo4").flexisel({
+        visibleItems: 1,
+        animationSpeed: 500,
+        autoPlay: true,
+        autoPlaySpeed: 5000,            
+        pauseOnHover: true,
+        enableResponsiveBreakpoints: true,
+        responsiveBreakpoints: { 
+            portrait: { 
+                changePoint:480,
+                visibleItems: 1
+            }, 
+            landscape: { 
+                changePoint:640,
+                visibleItems: 1
+            },
+            tablet: { 
+                changePoint:768,
+                visibleItems: 1
+            }
+        }
+    });
+    
+});
+</script>
+
+<script>	
+//jQuery time
+var current_fs, next_fs, previous_fs; //fieldsets
+var left, opacity, scale; //fieldset properties which we will animate
+var animating; //flag to prevent quick multi-click glitches
+
+$(".next").click(function(){
+	if(animating) return false;
+	animating = true;
+	
+	current_fs = $(this).parent();
+	next_fs = $(this).parent().next();
+	
+	//activate next step on progressbar using the index of next_fs
+	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+	
+	//show the next fieldset
+	next_fs.show(); 
+	//hide the current fieldset with style
+	current_fs.animate({opacity: 0}, {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale current_fs down to 80%
+			//scale = 1 - (1 - now) * 0.2;
+			//2. bring next_fs from the right(50%)
+			left = (now * 50)+"%";
+			//3. increase opacity of next_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({
+        'opacity': '0',
+        'position': 'absolute'
+      });
+			next_fs.css({'left': left, 'opacity': opacity});
+		}, 
+		duration: 0, 
+		complete: function(){
+			current_fs.hide();
+			animating = false;
+		}, 
+		//this comes from the custom easing plugin
+		easing: 'easeInOutBack'
+	});
+});
+
+$(".previous").click(function(){
+	if(animating) return false;
+	animating = true;
+	
+	current_fs = $(this).parent();
+	previous_fs = $(this).parent().prev();
+	
+	//de-activate current step on progressbar
+	$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+	
+	//show the previous fieldset
+	previous_fs.show(); 
+	//hide the current fieldset with style
+	current_fs.animate({opacity: 0}, {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale previous_fs from 80% to 100%
+			//scale = 0.8 + (1 - now) * 0.2;
+			//2. take current_fs to the right(50%) - from 0%
+			//left = ((1-now) * 50)+"%";
+			//3. increase opacity of previous_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({'opacity': '0'});
+			previous_fs.css({'position': 'relative', 'opacity': opacity});
+		}, 
+		duration: 0, 
+		complete: function(){
+			current_fs.hide();
+			animating = false;
+		}, 
+		//this comes from the custom easing plugin
+		easing: 'easeInOutBack'
+	});
+});
+
+$(".submit").click(function(){
+	return false;
+})
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('input[type="radio"]').click(function(){
+        if($(this).attr("value")=="student"){
+            $(".msform").not(".stu_reg").hide();
+            $(".stu_reg").show();
+        }
+        if($(this).attr("value")=="teacher"){
+            $(".msform").not(".tea_reg").hide();
+            $(".tea_reg").show();
+        }
+        if($(this).attr("value")=="school"){
+            $(".msform").not(".sch_reg").hide();
+            $(".sch_reg").show();
+        }
+    });
+});
+</script>
+ 
+</body>
+</html>
